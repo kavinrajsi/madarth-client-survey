@@ -1,6 +1,7 @@
 // React and Next.js hooks
 import { useState } from "react"
 import { useRouter } from "next/router"
+import Head from "next/head";
 
 // Supabase client for inserting data into the database
 import { supabase } from "@/lib/supabase"
@@ -126,6 +127,15 @@ export default function Home() {
   }
 
   return (
+        <>
+      <Head>
+        <title>Madarth Client Survey</title>
+        <meta
+          name="description"
+          content="Share your feedback on our creative work. This quick survey helps MadMe improve quality, timelines, and brand alignment."
+        />
+      </Head>
+
     <div className="dark bg-gray-100 bg-gray-900 min-h-screen flex items-center justify-center px-4 py-10">
       <Card className="w-full max-w-3xl">
         <CardHeader>
@@ -136,12 +146,12 @@ export default function Home() {
             {/* Name and Email Fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="md:col-span-1">
-                <Label htmlFor="name">Name *</Label>
+                <Label className="mb-2 block"  htmlFor="name">Name *</Label>
                 <Input name="name" value={formData.name} onChange={handleChange} />
                 {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
               </div>
               <div className="md:col-span-1">
-                <Label htmlFor="email">Email *</Label>
+                <Label className="mb-2 block"  htmlFor="email">Email *</Label>
                 <Input type="email" name="email" value={formData.email} onChange={handleChange} />
                 {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
               </div>
@@ -194,7 +204,7 @@ export default function Home() {
 
             {/* Suggestions text area */}
             <div>
-              <Label htmlFor="suggestions">Suggestions</Label>
+              <Label className="mb-2 block"  htmlFor="suggestions">Suggestions</Label>
               <Textarea
                 name="suggestions"
                 value={formData.suggestions}
@@ -230,5 +240,6 @@ export default function Home() {
         }
       `}</style>
     </div>
+     </>
   )
 }
